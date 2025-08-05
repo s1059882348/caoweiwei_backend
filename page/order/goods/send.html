@@ -1,0 +1,41 @@
+<style>
+    .layui-layer-setwin .images_delete_one {
+        background-position: 1px -40px;
+        cursor: pointer;
+    }
+</style>
+<div class="layuimini-main">
+
+    <div class="layui-form layuimini-form" lay-filter="edit_add" >
+
+
+        <input type="hidden" name="order_id">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label required">快递公司</label>
+            <div class="layui-input-block">
+                <select name="express_company">
+                    <option value="SF">顺丰速运</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label required">快递单号</label>
+            <div class="layui-input-block">
+                <input type="text" name="delivery_no" lay-verify="required" lay-reqtext="不能为空" placeholder="请输入"
+                       value="" class="layui-input">
+                <span class="el-input__words_limit"><span>0</span>/<span>100</span></span>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn layui-btn-normal button_prevent_clicks" lay-submit lay-filter="saveBtn">确认保存
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="page/order/goods/js/send.js" charset="utf-8"></script>

@@ -1,0 +1,243 @@
+<style>
+    .layui-layer-setwin .images_delete_one {
+        background-position: 1px -40px;
+        cursor: pointer;
+    }
+</style>
+<link href="js\lay-module\wangEditor\wangEditor.css" rel="stylesheet"/>
+<style>
+    #editor—wrapper {
+        border: 1px solid #ccc;
+        z-index: 100; /* 按需定义 */
+    }
+
+    #toolbar-container {
+        border-bottom: 1px solid #ccc;
+    }
+
+    #editor-container {
+        height: 500px;
+    }
+</style>
+<div class="layuimini-main">
+
+    <div class="layui-form layuimini-form" lay-filter="edit_add">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label required">分类</label>
+
+            <div class="layui-input-block">
+                <select id="cateid_select" name="cate_id" lay-filter="sid"> </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">名称</label>
+
+            <div class="layui-input-block">
+                <input type="text" name="title" lay-verify="required" lay-reqtext="名称不能为空" placeholder="请输入名称"
+                       value="" class="layui-input">
+                <span class="el-input__words_limit"><span>0</span>/<span>50</span></span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">味型</label>
+
+            <div class="layui-input-block">
+                <input type="radio" name="taste_type" value="1" title="有辣" checked>
+                <input type="radio" name="taste_type" value="2" title="无辣">
+                <input type="radio" name="taste_type" value="3" title="蒜香">
+                <input type="radio" name="taste_type" value="4" title="泡椒">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">封面图</label>
+
+            <div class="layui-input-block">
+                <button type="button" class="layui-btn" id="upload1">
+                    <i class="layui-icon">&#xe67c;</i>上传图片
+                </button>
+            </div>
+            <div class="layui-input-block">
+                <img style="width:300px;height:100%;margin-top:10px" src="images/bg.jpg">
+            </div>
+            <input type="hidden" name="cover_image">
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">图片组</label>
+
+            <div class="layui-input-block">
+                <button type="button" class="layui-btn upload_images" id="upload_images">
+                    <i class="layui-icon">&#xe67c;</i>上传图片组
+                </button>
+            </div>
+
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">视频</label>
+
+            <div class="layui-input-block">
+                <button type="button" class="layui-btn" id="upload2">
+                    <i class="layui-icon">&#xe67c;</i>上传视频
+                </button>
+                <button type="button" class="layui-btn" id="delete_video" style="margin-left:10%">
+                    <i class="layui-icon">&#xe640;</i>删除视频
+                </button>
+            </div>
+            <div class="layui-input-block">
+                <video style="width:300px;height:100%;" controls src="">
+
+                </video>
+            </div>
+            <input type="hidden" name="video">
+        </div>
+        <!--<div class="layui-form-item content_type_1">-->
+            <!--<label class="layui-form-label">详情1</label>-->
+
+            <!--<div class="layui-input-block">-->
+        <!--<textarea name="intro" id="layedit-demo"-->
+                  <!--class="layui-textarea"></textarea>-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="layui-form-item">
+            <label class="layui-form-label">排序值</label>
+
+            <div class="layui-input-block">
+                <input type="text" name="sort" value="" class="layui-input" placeholder="排序值越大越靠前">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">详情2</label>
+
+            <div class="layui-input-block">
+                <div id="editor—wrapper">
+                    <div id="toolbar-container"><!-- 工具栏 --></div>
+                    <div id="editor-container"><!-- 编辑器 --></div>
+                    <input type="hidden" id="get_content" name="intro">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="layui-tab" lay-filter="demo">
+            <ul class="layui-tab-title">
+                <li class="layui-this" data-spec_type='1'>真空装</li>
+                <li data-spec_type='2'>商用装</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label required">规格说明</label>
+
+                        <div class="layui-input-block">
+                            <input type="text" name="spec_desc[]" placeholder="请输入1"
+                                   value="" class="layui-input">
+                            <span class="el-input__words_limit"><span>0</span>/<span>50</span></span>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">库存</label>
+
+                        <div class="layui-input-block">
+                            <input type="number" name="inventory[]" value="" class="layui-input" placeholder="不能为负数">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">销量</label>
+
+                        <div class="layui-input-block">
+                            <input type="number" name="sales_volume[]" value="" class="layui-input" placeholder="不能为负数">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">价格</label>
+
+                        <div class="layui-input-block">
+                            <input type="text" name="price[]" value="" class="layui-input"
+                                   placeholder="不能为负数，价格为0前端不展示">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">原价</label>
+
+                        <div class="layui-input-block">
+                            <input type="text" name="original_price[]" value="" class="layui-input" placeholder="不能为负数">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">折扣价</label>
+
+                        <div class="layui-input-block">
+                            <input type="text" readonly="readonly" name="discount_price[]" value="" class="layui-input"
+                                   placeholder="不能为负数">
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="layui-tab-item">
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label required">规格说明</label>
+
+                        <div class="layui-input-block">
+                            <input type="text" name="spec_desc[]" placeholder="请输入2"
+                                   value="" class="layui-input">
+                            <span class="el-input__words_limit"><span>0</span>/<span>50</span></span>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">库存</label>
+
+                        <div class="layui-input-block">
+                            <input type="number" name="inventory[]" value="" class="layui-input" placeholder="不能为负数">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">销量</label>
+
+                        <div class="layui-input-block">
+                            <input type="number" name="sales_volume[]" value="" class="layui-input" placeholder="不能为负数">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">价格</label>
+
+                        <div class="layui-input-block">
+                            <input type="text" name="price[]" value="" class="layui-input"
+                                   placeholder="不能为负数，价格为0前端不展示">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">原价</label>
+
+                        <div class="layui-input-block">
+                            <input type="text" name="original_price[]" value="" class="layui-input" placeholder="不能为负数">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">折扣价</label>
+
+                        <div class="layui-input-block">
+                            <input type="text" name="discount_price[]" value="" class="layui-input" placeholder="不能为负数">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <input type="hidden" name="id">
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn layui-btn-normal button_prevent_clicks" lay-submit lay-filter="saveBtn">确认保存
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="page/shop/goods/js/add.js" charset="utf-8"></script>

@@ -1,0 +1,47 @@
+<!--
+操作日志-->
+<div class="layuimini-container layuimini-page-anim">
+    <div class="layuimini-main">
+
+        <fieldset class="table-search-fieldset">
+            <legend>搜索信息</legend>
+            <div style="margin: 10px 10px 10px 10px">
+                <form class="layui-form layui-form-pane" action="" lay-filter="search">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">操作员名称</label>
+                            <div class="layui-input-inline">
+                                <select id="admin_id" name="admin_id" lay-search="">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">操作日期</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="create_time" name="create_time" placeholder="  ">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">路由</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" name="route" placeholder="  ">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <button type="submit" class="layui-btn layui-btn-primary"  lay-submit lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+        <script type="text/html" id="toolbarDemo">
+            <div class="layui-btn-container">
+
+            </div>
+        </script>
+        <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+        <script type="text/html" id="currentTableBar">
+        </script>
+    </div>
+</div>
+<script src="page/system/log/js/index.js" charset="utf-8"></script>

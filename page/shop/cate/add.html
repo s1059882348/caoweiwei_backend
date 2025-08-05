@@ -1,0 +1,43 @@
+<link rel="stylesheet" href="js/lay-module/panda/lay_cascader/cascader/cascader.css">
+<div class="layuimini-main">
+
+    <div class="layui-form layuimini-form" lay-filter="cate_add">
+
+        <input type="hidden" name="pid" value="0">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label required">名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="title" lay-verify="required" lay-reqtext="名称不能为空" placeholder="请输入名称"
+                       value="" class="layui-input">
+                <span class="el-input__words_limit"><span>0</span>/<span>20</span></span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">图标</label>
+            <div class="layui-input-block">
+                <button type="button" class="layui-btn" id="upload1">
+                    <i class="layui-icon">&#xe67c;</i>上传图片
+                </button>
+            </div>
+            <div class="layui-input-block">
+                <img style="width:300px;height:100%;margin-top:10px" src="images/bg.jpg">
+            </div>
+            <input type="hidden" name="icon" lay-verify="icon" >
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">排序值</label>
+            <div class="layui-input-block">
+                <input type="text" name="sort" value="" class="layui-input" placeholder="排序值越大越靠前">
+            </div>
+        </div>
+
+        <input type="hidden" name="cate_id">
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn layui-btn-normal button_prevent_clicks" lay-submit lay-filter="saveBtn">确认保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="page/shop/cate/js/add.js" charset="utf-8"></script>

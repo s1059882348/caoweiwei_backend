@@ -1,0 +1,35 @@
+<style>
+    .layui-layer-setwin .images_delete_one {
+        background-position: 1px -40px;
+        cursor: pointer;
+    }
+</style>
+<div class="layuimini-main">
+
+    <div class="layui-form layuimini-form" lay-filter="" >
+
+
+        <input type="hidden" name="apply_id">
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户申请退款金额</label>
+            <div class="layui-input-block">
+                <input type="text" name="refund_amount" readonly="readonly" value="" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">退款金额</label>
+            <div class="layui-input-block">
+                <input type="text" name="amount" value="" class="layui-input amount_input" placeholder="不能为负数，最多保留两位小数，不能大于用户申请退款金额">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn layui-btn-normal button_prevent_clicks" lay-submit lay-filter="saveBtn">确认保存
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="page/order/refund/js/refund.js" charset="utf-8"></script>

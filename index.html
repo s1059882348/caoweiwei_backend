@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>曹薇薇管理平台</title>
+    <meta name="keywords" content="layuimini,layui,layui模板,layui后台,后台模板,admin,admin模板,layui mini">
+    <meta name="description"
+          content="layuimini基于layui的轻量级前端后台管理框架，最简洁、易用的后台框架模板，面向所有层次的前后端程序,只需提供一个接口就直接初始化整个框架，无需复杂操作。">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="css/layuimini.css?v=2.0.1" media="all">
+    <link rel="stylesheet" href="css/themes/default.css" media="all">
+    <link rel="stylesheet" href="css/public.css" media="all">
+    <style id="layuimini-bg-color">
+    </style>
+    <link rel="stylesheet" href="css/common.css">
+</head>
+<body class="layui-layout-body layuimini-all">
+<div class="layui-layout layui-layout-admin">
+
+    <div class="layui-header header">
+        <div class="layui-logo layuimini-logo layuimini-back-home"></div>
+
+        <div class="layuimini-header-content">
+            <a>
+                <div class="layuimini-tool"><i title="展开" class="fa fa-outdent" data-side-fold="1"></i></div>
+            </a>
+
+            <!--电脑端头部菜单-->
+            <!--            <ul class="layui-nav layui-layout-left layuimini-header-menu layuimini-menu-header-pc layuimini-pc-show">-->
+            <!--            </ul>-->
+
+            <!--手机端头部菜单-->
+            <!--            <ul class="layui-nav layui-layout-left layuimini-header-menu layuimini-mobile-show">-->
+            <!--                <li class="layui-nav-item">-->
+            <!--                    <a href="javascript:;"><i class="fa fa-list-ul"></i> 选择模块</a>-->
+            <!--                    <dl class="layui-nav-child layuimini-menu-header-mobile">-->
+            <!--                    </dl>-->
+            <!--                </li>-->
+            <!--            </ul>-->
+
+            <ul class="layui-nav layui-layout-right">
+
+                <li class="layui-nav-item" lay-unselect>
+                    <a href="javascript:;" class="layuimini-clear clear_redis_data" title="清除数据缓存"><i
+                            class="fa fa-first-order"></i></a>
+                </li>
+                <li class="layui-nav-item" lay-unselect>
+                    <a href="javascript:;" data-refresh="刷新"><i class="fa fa-refresh"></i></a>
+                <li class="layui-nav-item" lay-unselect>
+                    <a href="javascript:;" class="layuimini-clear clear_role_permission" title="清除权限缓存"><i
+                            class="fa fa-trash-o"></i></a>
+                </li>
+                <li class="layui-nav-item mobile layui-hide-xs" lay-unselect>
+                    <a href="javascript:;" data-check-screen="full"><i class="fa fa-arrows-alt"></i></a>
+                </li>
+                <li class="layui-nav-item layuimini-setting">
+                    <a href="javascript:;">admin</a>
+                    <dl class="layui-nav-child">
+                        <dd>
+                            <a href="javascript:;" layuimini-content-href="page/system/admin/user-setting.html"
+                               data-title="基本资料"
+                               data-icon="fa fa-gears">基本资料<span class="layui-badge-dot"></span></a>
+                        </dd>
+                        <dd>
+                            <hr>
+                        </dd>
+                        <dd>
+                            <a href="javascript:;" class="login-out">退出登录</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item layuimini-select-bgcolor" lay-unselect>
+                    <a href="javascript:;" data-bgcolor="配色方案"><i class="fa fa-ellipsis-v"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!--无限极左侧菜单-->
+    <div class="layui-side layui-bg-black layuimini-menu-left">
+    </div>
+
+    <!--初始化加载层-->
+    <div class="layuimini-loader">
+        <div class="layuimini-loader-inner"></div>
+    </div>
+
+    <!--手机端遮罩层-->
+    <div class="layuimini-make"></div>
+
+    <!-- 移动导航 -->
+    <div class="layuimini-site-mobile"><i class="layui-icon"></i></div>
+
+    <div class="layui-body">
+
+        <div class="layui-card layuimini-page-header layui-hide">
+            <div class="layui-breadcrumb layuimini-page-title">
+                <a lay-href="" href="/">主页</a><span lay-separator="">/</span>
+                <a><cite>常规管理</cite></a><span lay-separator="">/</span>
+                <a><cite>系统设置</cite></a>
+            </div>
+        </div>
+
+        <div class="layuimini-content-page">
+        </div>
+
+    </div>
+
+</div>
+<script src="lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="js/lay-config.js?v=2.0.0" charset="utf-8"></script>
+<script src="config.js" charset="utf-8"></script>
+<script src="js/common.js" charset="utf-8"></script>
+<script>
+
+    layui.use(['jquery', 'layer', 'miniAdmin', 'miniTongji', 'myAjax', 'table'], function () {
+
+        var $ = layui.jquery,
+            layer = layui.layer,
+            miniAdmin = layui.miniAdmin,
+            myAjax = layui.myAjax,
+            table = layui.table,
+            miniTongji = layui.miniTongji;
+        var permissions = [];
+
+        //获取初始数据
+        var initData = {
+            "homeInfo": {
+                "title": "首页",
+                "href": "page/home.html",
+            },
+            "logoInfo": {
+                "title": "曹薇薇",
+                "image": "images/logo.png",
+                "href": "",
+            },
+            "menuInfo": [
+                {
+                    "title": "后台",
+                    "icon": "fa fa-address-book",
+                    "href": "",
+                    "target": "_self",
+                    "child": []
+                }
+            ]
+        };
+        myAjax.authAjax('permission/menuAuth', 'get', false, '', function (response) {
+            let menus = response.data.menu[0].child;
+            menus = forHandle(menus);
+
+            function forHandle(data) {
+                var newdata = data;
+                for (var i in data) {
+                    newdata[i].icon = 'fa ' + data[i].icon;
+                    if (data[i].child) {
+                        newdata[i].child = forHandle(data[i].child);
+                    }
+                }
+                return newdata;
+            }
+
+            initData.menuInfo[0].child = menus;
+
+            //权限节点
+            permissions = response.data.new_permission;
+            all_permissions = arrayColumn(response.data.permission, 'href');
+        });
+
+        var options = {
+            // iniUrl: "api/init.json",    // 初始化接口
+            initData: initData,
+            renderPageVersion: true,    // 初始化页面是否加版本号
+            bgColorDefault: false,      // 主题默认配置
+            multiModule: true,          // 是否开启多模块
+            menuChildOpen: false,       // 是否默认展开菜单
+            loadingTime: 0,             // 初始化加载时间
+            pageAnim: true,             // 切换菜单动画
+        };
+        miniAdmin.render(options);
+
+        //退出登录
+        $('.login-out').on("click", function () {
+            myAjax.authAjax('admin/logout', 'post', true, '', function () {
+                layer.msg('退出登录成功', function () {
+                    window.location = 'login.html';
+                    sessionStorage.removeItem('token');
+                });
+            });
+        });
+
+        //管理员昵称
+        $('.layuimini-setting a:eq(0)').text(getAdminInfo().nickname);
+
+        //重写方法 layer.open 的success
+        var dddd = layer.open;
+        layer.open = function (obj) {
+            // console.log(arguments)
+            var s = obj.success;
+            obj.success = function (layero, index) {
+                s && s(layero, index);
+
+                //计算输入框中已有的字符的长度
+                $('.el-input__words_limit').each(function () {
+                    $(this).find('span:eq(0)').html($(this).prev().val().length);
+                });
+            }
+            return dddd.apply(this, arguments);
+        }
+
+        //重写方法 table.render 的done
+        var dddd1 = table.render;
+        table.render = function (obj) {
+            // console.log(arguments)
+            var s = obj.done;
+            obj.done = function (res, curr, count) {
+                s && s(res, curr, count);
+
+                //检查节点权限
+                let pid = $('.layui-nav-tree .layui-this a').attr('id');
+                checkPermission(permissions, pid, all_permissions);
+
+                //某些情况下，需要刷新页面。比如：角色授权，删除菜单等
+                if (sessionStorage.getItem('is_reload') == 1) {
+                    sessionStorage.setItem('is_reload', 0);
+                    location.reload();
+                }
+            }
+            return dddd1.apply(this, arguments);
+        }
+
+        //清除权限缓存
+        $('.clear_role_permission').click(function () {
+            myAjax.authAjax('permission/clearAllRoleCache', 'post',
+                true, '', function (res) {
+                    layer.msg('权限缓存清理成功', {icon: 1, time: 2000});
+                });
+        });
+
+        //清除数据缓存
+        $('.clear_redis_data').click(function () {
+            myAjax.authAjax('index/clearRedisData', 'post',
+                true, '', function (res) {
+                    layer.msg('数据缓存清理成功', {icon: 1, time: 2000});
+                });
+        });
+
+        //保存当前菜单页面的ID
+        $('.menu-dd').click(function () {
+            let pid = $('.layui-nav-tree').find('.layui-this a').attr('id');
+            sessionStorage.setItem('menu_pid', pid);
+        });
+
+
+    });
+</script>
+</body>
+</html>

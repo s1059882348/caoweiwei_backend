@@ -1,0 +1,21 @@
+<div class="layuimini-main">
+
+    <div class="layui-form layuimini-form" lay-filter="role_add">
+        <div class="layui-form-item">
+            <label class="layui-form-label required">角色名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="role_name" lay-verify="required" lay-reqtext="角色名称不能为空" placeholder="请输入角色名称"
+                       value="" class="layui-input">
+                <span class="el-input__words_limit"><span>0</span>/<span>10</span></span>
+            </div>
+        </div>
+
+        <input type="hidden" name="role_id">
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn layui-btn-normal button_prevent_clicks" lay-submit lay-filter="saveBtn">确认保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="page/system/role/js/add.js" charset="utf-8"></script>

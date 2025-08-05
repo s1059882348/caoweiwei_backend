@@ -1,0 +1,64 @@
+<div class="layuimini-main">
+
+    <div class="layui-form layuimini-form" lay-filter="admin_add">
+        <div class="layui-form-item">
+            <label class="layui-form-label required">账户</label>
+            <div class="layui-input-block">
+                <input type="text" name="username" lay-verify="required" lay-reqtext="账户不能为空" placeholder="请输入账户"
+                       value="" class="layui-input">
+                <span class="el-input__words_limit"><span>0</span>/<span>20</span></span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">密码</label>
+            <div class="layui-input-block">
+                <input type="password" name="pwd" lay-verify="required" lay-reqtext="密码不能为空" placeholder="请输入密码"
+                       value="" class="layui-input">
+                <span class="el-input__words_limit"><span>0</span>/<span>10</span></span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">确认密码</label>
+            <div class="layui-input-block">
+                <input type="password" name="cfm_pwd" lay-verify="required"
+                       value="" class="layui-input">
+                <span class="el-input__words_limit"><span>0</span>/<span>10</span></span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">昵称</label>
+            <div class="layui-input-block">
+                <input type="text" name="nickname" lay-verify="required" lay-reqtext="昵称不能为空" placeholder="请输入昵称"
+                       value="" class="layui-input">
+                <span class="el-input__words_limit"><span>0</span>/<span>20</span></span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">头像</label>
+            <div class="layui-input-block">
+                <button type="button" class="layui-btn" id="upload1">
+                    <i class="layui-icon">&#xe67c;</i>上传图片
+                </button>
+            </div>
+            <div class="layui-input-block">
+                <img style="width:100px;height:100px;margin-top:10px" src="images/bg.jpg" >
+            </div>
+            <input type="hidden" name="avatar">
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">角色</label>
+            <div class="layui-input-block layui-form">
+                <select id="add_role_id" name="role_id"> </select>
+            </div>
+        </div>
+
+
+        <input type="hidden" name="id">
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn layui-btn-normal button_prevent_clicks" lay-submit lay-filter="saveBtn">确认保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="page/system/admin/js/add.js" charset="utf-8"></script>

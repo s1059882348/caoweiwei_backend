@@ -1,0 +1,158 @@
+<style>
+    .layui-form-item .layui-input-company {
+        width: auto;
+        padding-right: 10px;
+        line-height: 38px;
+    }
+
+    .layui-nav {
+        margin-bottom: 40px;
+    }
+
+    .layui-nav-setting .layui-this:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        height: 5px;
+        background-color: #5FB878;
+        transition: all .2s;
+        -webkit-transition: all .2s;
+        pointer-events: none;
+        top: auto;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .layui-input-block {
+        width: 700px;
+    }
+
+    .layuimini-form>.layui-form-item>.layui-form-label {
+        width: 20% !important;
+    }
+    .layuimini-form>.layui-form-item>.layui-input-block {
+        margin-left: 25% !important;
+    }
+</style>
+<div class="layuimini-container layuimini-page-anim">
+    <div class="layuimini-main">
+
+        <div class="layui-form layuimini-form" lay-filter="edit_add">
+
+
+            <ul class="layui-nav layui-nav-setting" lay-filter="">
+            </ul>
+
+
+
+            <div class="layui-form-item" id="save_buttom">
+                <div class="layui-input-block">
+                    <button class="layui-btn layui-btn-normal button_prevent_clicks" lay-submit lay-filter="setting">确认保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    layui.use(['form', 'myAjax', 'element', 'upload'], function () {
+        var form = layui.form,
+            myAjax = layui.myAjax,
+            layer = layui.layer,
+            upload = layui.upload,
+            $ = layui.$;
+        var element = layui.element;
+
+        /**
+         * 初始化表单，要加上，不然刷新部分组件可能会不加载
+         */
+        form.render();
+
+        //监听提交
+        form.on('submit(setting)', function (data) {
+
+            var params_object = data.field;
+
+            myAjax.authAjax('config/update', 'post',
+                false, {'config':params_object}, saveHandle);
+
+            return false;
+        });
+
+        function saveHandle(response) {
+            layer.msg(response.msg, {icon: 1, time: 1000});
+        }
+
+
+        let edit_data = [];
+        myAjax.authAjax("config/index", "get",
+            false, "", function (response) {
+                edit_data = response.data;
+            });
+
+        $.each(edit_data, function (index, value) {
+            let html = "<li class='layui-nav-item' data-module_id='" + value.module_id + "'><a>" + value.module_name + "</a></li>";
+            $('.layui-nav-setting').append(html);
+            if (value.child.length > 0) {
+                $.each(value.child, function (ki, kv) {
+                    let html = '<div class="layui-form-item module_id_' + value.module_id + '">' +
+                        '<label class="layui-form-label required">' + kv.name + '</label>';
+
+                    if (kv.show_type == 1) {
+                        html += '<div class="layui-input-block">';
+                        html += '<input type="text" name="' + kv.id + '" lay-verify="required" ';
+                        if (kv.is_conf == 0) {
+                            html += ' disabled="disabled" ';
+                        }
+                        html += ' placeholder="" value="' + kv.value + '" class="layui-input">';
+                        html += '<tip>' + kv.remark + '</tip></div></div>';
+                    } else if (kv.show_type == 2) {
+                        html += '<div class="layui-input-block">';
+                        html += '<textarea name="' + kv.id + '" ';
+                        if (kv.is_conf == 0) {
+                            html += ' disabled="disabled" ';
+                        }
+                        html += 'class="layui-textarea">' + kv.value + '</textarea>';
+                        html += '<tip>' + kv.remark + '</tip></div></div>';
+                    } else if (kv.show_type == 3) {
+                        if (kv.is_conf == 1) {
+                            html += '<div class="layui-input-block">';
+                            html += '<button type="button" class="layui-btn uploadImg" >' +
+                                '<i class="layui-icon">&#xe67c;</i>上传图片' +
+                                '</button></div>';
+                        }
+                        html += '<div class="layui-input-block">' +
+                            '<img style="width:300px;height:100%;margin-top:10px" src="images/bg.jpg" onclick="showBigImage(this)" _src="' + kv.image_url + '">\n' +
+                            '</div>' +
+                            '<input type="hidden" name="' + kv.id + '" value="' + kv.value + '">' +
+                            '</div>';
+                    }
+
+                    $('#save_buttom').before(html);
+                });
+            }
+            $('.layui-nav-setting li:first').addClass('layui-this');
+            $('.layui-form-item:not(:last)').hide();
+            $('.module_id_1').show();
+        });
+
+        //切换模块
+        $('body').on('click', '.layui-nav-setting li', function () {
+            let module_id = $(this).data('module_id');
+            $('.layui-form-item:not(:last)').hide();
+            $('.module_id_' + module_id).show();
+            $('.layui-nav-setting li').removeClass('layui-this');
+            $(this).addClass('layui-this');
+        });
+
+        //上传图片
+        uploadImageFun($('.uploadImg'),false);
+
+        //回显图片
+        $('.uploadImg').each(function () {
+            let image_url = $(this).parent().parent().find('img').attr('_src');
+            if (image_url) {
+                getImageBlob($(this).parent().parent().find('img')[0], image_url);
+            }
+        });
+    });
+</script>

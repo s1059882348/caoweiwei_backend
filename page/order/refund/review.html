@@ -1,0 +1,32 @@
+<style>
+    .layui-layer-setwin .images_delete_one {
+        background-position: 1px -40px;
+        cursor: pointer;
+    }
+</style>
+<div class="layuimini-main">
+
+    <div class="layui-form layuimini-form" lay-filter="" >
+
+
+        <input type="hidden" name="apply_id">
+        <div class="layui-form-item">
+            <label class="layui-form-label required">审核状态</label>
+            <div class="layui-input-block">
+                <select name="status">
+                    <option value="2">审核通过</option>
+                    <option value="3">审核拒绝</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn layui-btn-normal button_prevent_clicks" lay-submit lay-filter="saveBtn">确认保存
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="page/order/refund/js/review.js" charset="utf-8"></script>

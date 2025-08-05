@@ -1,0 +1,56 @@
+<style>
+    table>tbody .layui-table-cell{
+        height:60px;
+    }
+</style>
+<div class="layuimini-container layuimini-page-anim">
+    <div class="layuimini-main">
+
+        <fieldset class="table-search-fieldset">
+            <legend>搜索信息</legend>
+            <div style="margin: 10px 10px 10px 10px">
+                <form class="layui-form layui-form-pane" action="" lay-filter="search">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">订单号</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="order_no" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">创建者</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="uid" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-inline">
+                            <button type="submit" class="layui-btn layui-btn-primary"  lay-submit lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+
+        <script type="text/html" id="toolbarDemo">
+            <div class="layui-btn-container">
+
+            </div>
+        </script>
+
+        <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+
+        <script type="text/html" id="currentTableBar">
+            {{#  if(d.status === 1){ }}
+            <a class="layui-btn layui-btn-xs layui-btn-normal  check-permission" lay-event="cancle" data-permission="cancle">取消</a>
+            <a class="layui-btn layui-btn-xs layui-btn-normal  check-permission" lay-event="review" data-permission="review">审核</a>
+            {{#  } else if(d.status === 2){ }}
+            <a class="layui-btn layui-btn-xs layui-btn-normal  check-permission" lay-event="refund" data-permission="refund">打款</a>
+            <a class="layui-btn layui-btn-xs layui-btn-normal  check-permission" lay-event="mark" data-permission="mark">标记成功</a>
+            {{#  } else { }}
+            {{#  } }}
+        </script>
+
+    </div>
+</div>
+<script src="page/order/refund/js/index.js" charset="utf-8"></script>

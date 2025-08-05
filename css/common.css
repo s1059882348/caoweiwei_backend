@@ -1,0 +1,12 @@
+.layui-form-item .el-input__words_limit {
+    color: #909399;
+    background: #fff;
+    position: absolute;
+    font-size: 15px;
+    bottom: 10px;
+    left: 100%;
+}
+
+.layui-input-block {
+    margin-right: 50px;
+}

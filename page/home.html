@@ -1,0 +1,98 @@
+<style>
+    .top-panel {
+        border: 1px solid #eceff9;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    .top-panel > .layui-card-body {
+        height: 60px;
+    }
+
+    .top-panel-number {
+        line-height: 60px;
+        font-size: 30px;
+        border-right: 1px solid #eceff9;
+    }
+
+    .top-panel-tips {
+        line-height: 30px;
+        font-size: 12px
+    }
+
+    /*新增样式*/
+    .button-panel-tips1 {
+        float: left;
+        font-size: 12px;
+        margin-left: 20px;
+        line-height: 30px;
+    }
+    .button-panel-tips2 {
+        float: right;
+        font-size: 12px;
+        margin-right: 20px;
+        line-height: 30px;
+    }
+    /*三个方块*/
+    .button-panel-tips3 {
+        float: left;
+        font-size: 12px;
+        margin-left: 20px;
+        line-height: 30px;
+        width:25%;
+    }
+</style>
+<div class="layuimini-container layuimini-page-anim">
+    <div class="layuimini-main welcome">
+        <div class="layui-row layui-col-space15">
+
+            <div class="layui-col-xs12 layui-col-md3">
+                <div class="layui-card top-panel">
+                    <div class="layui-card-header">今日注册用户</div>
+                    <div class="layui-card-body">
+                        <div class="layui-row layui-col-space5">
+                            <div class="top-panel-number">
+                                <div class="layui-col-xs3 layui-col-md4 top-panel-tips">
+                                    <span>官网</span>
+                                    <br>
+                                    <span id="official_user_total"></span>
+                                </div>
+                                <div class="layui-col-xs3 layui-col-md4 top-panel-tips">
+                                    <span>渠道</span>
+                                    <br>
+                                    <span id="channel_user_total"></span>
+                                </div>
+                                <div class="layui-col-xs3 layui-col-md4 top-panel-tips">
+                                    <span>用户</span>
+                                    <br>
+                                    <span id="user_user_total"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div style="height: 40px">
+                        <div class="button-panel-tips1">用户总数</div>
+                        <div class="button-panel-tips2" id="user_total"></div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</div>
+<script>
+    layui.use(['layer', 'echarts', 'miniPage', 'myAjax'], function () {
+
+        var $ = layui.jquery,
+            layer = layui.layer,
+            miniPage = layui.miniPage,
+            echarts = layui.echarts;
+        var myAjax = layui.myAjax;
+
+
+    });
+</script>

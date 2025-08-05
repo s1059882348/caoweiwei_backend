@@ -1,0 +1,71 @@
+<link rel="stylesheet" href="js/lay-module/panda/lay_cascader/cascader/cascader.css">
+<div class="layuimini-main">
+
+    <div class="layui-form layuimini-form" lay-filter="menu_add">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">上级菜单</label>
+            <div class="layui-input-block">
+                <input type="text" id="demo7" class="layui-input" readonly="readonly">
+            </div>
+            <input type="hidden" name="pid" value="0">
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label required">菜单名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="title" lay-verify="required" lay-reqtext="名称不能为空" placeholder="请输入菜单名称"
+                       value="" class="layui-input">
+                <span class="el-input__words_limit"><span>0</span>/<span>20</span></span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">类型</label>
+            <div class="layui-input-block">
+                <select name="type">
+                    <option value="0">目录</option>
+                    <option value="1">菜单</option>
+                    <option value="2">节点</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">图标</label>
+            <div class="layui-input-block">
+                <input type="text" id="iconPicker" lay-filter="iconPicker" class="hide" name="icon">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">前端路由</label>
+            <div class="layui-input-block">
+                <input type="text" name="href" value="" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">打开方式</label>
+            <div class="layui-input-block">
+                <input type="text" name="target" value="" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">排序值</label>
+            <div class="layui-input-block">
+                <input type="text" name="sort" value="" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">权限路由</label>
+            <div class="layui-input-block">
+                <input type="text" name="permission" value="" class="layui-input">
+            </div>
+        </div>
+
+        <input type="hidden" name="menu_id">
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn layui-btn-normal button_prevent_clicks" lay-submit lay-filter="saveBtn">确认保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="page/system/menu/js/add.js" charset="utf-8"></script>

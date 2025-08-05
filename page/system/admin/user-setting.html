@@ -1,0 +1,109 @@
+<style>
+    .layui-form-item .layui-input-company {
+        width: auto;
+        padding-right: 10px;
+        line-height: 38px;
+    }
+</style>
+<div class="layuimini-container layuimini-page-anim">
+    <div class="layuimini-main">
+
+        <div class="layui-form layuimini-form" lay-filter="example">
+            <div class="layui-form-item">
+                <label class="layui-form-label required">账号</label>
+                <div class="layui-input-block">
+                    <input type="text" name="username" value="" class="layui-input" readonly="readonly">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label required">昵称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="nickname" lay-verify="required" lay-reqtext="昵称不能为空" placeholder="请输入昵称"
+                           value="" class="layui-input">
+                    <span class="el-input__words_limit"><span>0</span>/<span>20</span></span>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label required">头像</label>
+                <div class="layui-input-block">
+                    <button type="button" class="layui-btn" id="upload1">
+                        <i class="layui-icon">&#xe67c;</i>上传图片
+                    </button>
+                </div>
+                <div class="layui-input-block">
+                    <img style="width:100px;height:100px;margin-top:10px" src="images/bg.jpg" >
+                </div>
+                <input type="hidden" name="avatar">
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label required">角色</label>
+                <div class="layui-input-block layui-form">
+                    <select id="add_role_id" name="role_id" lay-filter="role_id" disabled> </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">新的密码</label>
+                <div class="layui-input-block">
+                    <input type="password" name="new_password" placeholder="请输入新的密码" value="" class="layui-input">
+                </div>
+            </div>
+
+            <input type="hidden" name="id">
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    layui.use(['form', 'miniPage', 'myAjax','upload'], function () {
+        var form = layui.form,
+            layer = layui.layer,
+            myAjax = layui.myAjax,
+            upload = layui.upload,
+            miniPage = layui.miniPage,
+            $ = layui.$;
+
+        /**
+         * 初始化表单，要加上，不然刷新部分组件可能会不加载
+         */
+        form.render();
+
+        //监听提交
+        form.on('submit(saveBtn)', function (data) {
+
+            myAjax.authAjax('admin/update', 'post', true, data.field, function (response) {
+                miniPage.hashHome();
+
+                if(response.code == 0){
+                    layer.msg('修改成功，退出后重新登录！', function () {
+                        window.location = 'login.html';
+                        sessionStorage.removeItem('token');
+                    });
+                }
+            });
+
+            return false;
+        });
+
+
+        //初始化角色下拉框
+        let roles = getRoleList();
+        initDynamicSelect(roles, "add_role_id",'请选择');
+        form.render("select");
+
+        //管理员信息
+        let admin_id = getAdminInfo().id;
+        myAjax.authAjax('admin/info', 'get', false, {id: admin_id}, function (res) {
+            form.val('example', res.data);
+            countInputCount();
+            getImageBlob($('#upload1').parent().parent().find('img')[0], res.data.avatar_url);
+        });
+
+        //上传图片
+        uploadImageFun($('#upload1'));
+
+    });
+</script>

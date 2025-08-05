@@ -1,0 +1,54 @@
+<div class="layuimini-main">
+
+    <div class="layui-form layuimini-form" lay-filter="edit_add" >
+
+        <div class="layui-form-item">
+            <label class="layui-form-label required">广告位</label>
+            <div class="layui-input-block">
+                <select id="sid_select" name="sid" lay-filter="sid"> </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">广告名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="title" lay-verify="required" lay-reqtext="广告名称不能为空" placeholder="请输入广告名称"
+                       value="" class="layui-input">
+                <span class="el-input__words_limit"><span>0</span>/<span>50</span></span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">广告图片</label>
+            <div class="layui-input-block">
+                <button type="button" class="layui-btn" id="upload1">
+                    <i class="layui-icon">&#xe67c;</i>上传图片
+                </button>
+            </div>
+            <div class="layui-input-block">
+                <img style="width:300px;height:100%;margin-top:10px" src="images/bg.jpg">
+            </div>
+            <input type="hidden" name="image">
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">投放时间</label>
+            <div class="layui-input-block">
+                <input type="text" name="start_time" id="laydate2" value="" class="layui-input" autocomplete="off">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">结束时间</label>
+            <div class="layui-input-block">
+                <input type="text" name="end_time" id="laydate3" value="" class="layui-input" autocomplete="off">
+            </div>
+        </div>
+
+        <input type="hidden" name="id">
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn layui-btn-normal button_prevent_clicks" lay-submit lay-filter="saveBtn">确认保存
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="page/activity/adv/js/add.js" charset="utf-8"></script>
