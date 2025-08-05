@@ -27,10 +27,10 @@ layui.use(['form', 'table', 'miniPage', 'element', 'myAjax', 'laydate'], functio
             {field: 'uid', width: 100, title: '用户id', align: "center"},
             {field: 'nickname', width: 150, title: '用户昵称', align: "center"},
             {field: 'goods_name', width: 200, title: '商品名称', align: "center"},
-            {field: 'weight', width: 200, title: '克重（kg）', align: "center"},
+            {field: 'weight', width: 200, title: '克重（g）', align: "center"},
             {field: 'spec_num', width: 200, title: '规格（串/包）', align: "center"},
             {field: 'taste_type_name', width: 200, title: '味型', align: "center"},
-            {field: 'monthly_usage', width: 200, title: '每月用量', align: "center"},
+            {field: 'monthly_usage', width: 200, title: '每月用量(包)', align: "center"},
             {
                 field: 'create_time', width: 200, title: '创建时间', align: "center",
                 templet: function (d) {
