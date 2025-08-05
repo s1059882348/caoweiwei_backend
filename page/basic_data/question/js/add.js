@@ -23,7 +23,7 @@ layui.use(['form', 'table', 'myAjax'], function () {
     });
 
     function saveHandle(response) {
-        layer.msg(response.msg, {icon: 1,time:1000});
+        layer.msg(response.msg, {icon: 1, time: 1000});
         // 关闭弹出层
         layer.close(parentIndex);
         //更新列表
@@ -31,15 +31,13 @@ layui.use(['form', 'table', 'myAjax'], function () {
     }
 
 
-
     ////////////////////wangeditor编辑器///////////////////////
-    const { createEditor, createToolbar } = window.wangEditor
+    const {createEditor, createToolbar} = window.wangEditor
 
     const editorConfig = {
         placeholder: 'Type here...',
         MENU_CONF: {},
-        onChange(editor)
-        {
+        onChange(editor) {
             const html = editor.getHtml()
             //console.log('editor content', html)
             // 也可以同步到 <textarea>
@@ -80,4 +78,12 @@ layui.use(['form', 'table', 'myAjax'], function () {
 
     ////////////////////wangeditor编辑器///////////////////////
 
+
+    //通过edit_one赋值
+    if (window[window_edit_one]) {
+        let edit_one = JSON.parse(window[window_edit_one]);
+        window[window_edit_one] = '';
+
+        editor.setHtml(edit_one.answer);
+    }
 });

@@ -86,6 +86,7 @@ layui.use(['form', 'table', 'miniPage', 'element', 'myAjax'], function () {
             myAjax.authAjax("question/getInfo", "get",
                 false, {id: data.id}, function (response) {
                     edit_data = response.data;
+                    window[window_edit_one] = JSON.stringify(edit_data);
                 });
 
             var content = miniPage.getHrefContent('page/basic_data/question/add.html');
