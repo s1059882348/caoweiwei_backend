@@ -661,7 +661,7 @@ function uploadVideoFun(element) {
             , url: request_url //上传接口
             , headers: {Authorization: token}
             , accept: 'video'
-            , exts: 'mp4|avi'
+            , exts: 'mp4|avi|mov'
             , field: 'upload_file'
             , size: 10 * 1024
             , before: function (obj) {
