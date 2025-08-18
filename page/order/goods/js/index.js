@@ -104,6 +104,13 @@ layui.use(['form', 'table', 'miniPage', 'element', 'myAjax', 'laydate'], functio
                     layero.find("input[name='order_id']").val(data.id);
                 },
             });
+        } else if(obj.event === 'finance'){
+            let requestData = $('.layui-form-pane').serialize();
+            layer.confirm('确定导出？', function (index) {
+                const url = Requesthttp + 'order/exportGoodsOrderFinance' + '?' + requestData;
+                downloadUrl(url);
+                layer.close(index);
+            });
         }
     });
 
