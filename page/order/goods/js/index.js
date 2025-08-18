@@ -107,7 +107,7 @@ layui.use(['form', 'table', 'miniPage', 'element', 'myAjax', 'laydate'], functio
         } else if(obj.event === 'finance'){
             let requestData = $('.layui-form-pane').serialize();
             layer.confirm('确定导出？', function (index) {
-                const url = Requesthttp + 'order/exportGoodsOrderFinance' + '?' + requestData;
+                const url = Requesthttp + 'order/exportGoodsOrderFinance' + '?order_id=' + data.id;
                 downloadUrl(url);
                 layer.close(index);
             });
