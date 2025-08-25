@@ -29,6 +29,21 @@
             <input type="hidden" name="image">
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label required">跳转类型</label>
+
+            <div class="layui-input-block">
+                <input type="radio" name="jump_type" value="0" title="无" checked>
+                <input type="radio" name="jump_type" value="1" title="外链">
+                <input type="radio" name="jump_type" value="2" title="内链">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">跳转链接</label>
+            <div class="layui-input-block">
+                <input type="text" name="jump_url" value="" class="layui-input" autocomplete="off" placeholder="比如：内链-跳转商品详情：/pages/pages_product/detail/index?id=商品ID">
+            </div>
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label">投放时间</label>
             <div class="layui-input-block">
                 <input type="text" name="start_time" id="laydate2" value="" class="layui-input" autocomplete="off">
