@@ -32,16 +32,18 @@
             <label class="layui-form-label required">跳转类型</label>
 
             <div class="layui-input-block">
-                <input type="radio" name="jump_type" value="0" title="无" checked>
-                <input type="radio" name="jump_type" value="1" title="外链">
-                <input type="radio" name="jump_type" value="2" title="内链-商品详情">
+                <input type="radio" name="jump_type" value="0" title="无" checked lay-filter="jump_type">
+                <input type="radio" name="jump_type" value="1" title="外链" lay-filter="jump_type">
+                <input type="radio" name="jump_type" value="2" title="内链-商品详情" lay-filter="jump_type">
             </div>
         </div>
 
         <!-- 商品搜索功能，仅在选择内链-商品详情时显示 -->
-        <div class="layui-form-item" id="goods_search_container" style="display: none;">
+        <div class="layui-form-item" id="goods_search_container" style="display: none !important;">
             <label class="layui-form-label">商品搜索</label>
             <div class="layui-input-block">
+                <!-- 测试按钮 -->
+                <button type="button" class="layui-btn layui-btn-xs layui-btn-warm" id="test_show_btn" style="margin-bottom: 10px;">测试显示商品搜索</button>
                 <div class="layui-input-inline" style="width: 300px;">
                     <input type="text" id="goods_keyword" class="layui-input" placeholder="请输入商品名称关键词搜索">
                 </div>
@@ -49,7 +51,7 @@
                     <i class="layui-icon">&#xe615;</i>搜索
                 </button>
             </div>
-            <div class="layui-input-block" id="goods_search_results" style="margin-top: 10px; display: none;">
+            <div class="layui-input-block" id="goods_search_results" style="margin-top: 10px; display: none !important;">
                 <div class="layui-card">
                     <div class="layui-card-header">搜索结果</div>
                     <div class="layui-card-body" id="goods_list_container">
