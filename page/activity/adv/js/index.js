@@ -162,6 +162,10 @@ layui.use(['form', 'table', 'miniPage', 'element', 'myAjax', 'laydate'], functio
                     if (edit_data.image_url) {
                         getImageBlob(layero.find('#upload1').parent().parent().find('img')[0], edit_data.image_url);
                     }
+
+                    if(edit_data.jump_type === 2){
+                        $('#goods_search_container').show();
+                    }
                 },
             });
 
