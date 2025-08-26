@@ -34,15 +34,39 @@
             <div class="layui-input-block">
                 <input type="radio" name="jump_type" value="0" title="无" checked>
                 <input type="radio" name="jump_type" value="1" title="外链">
-                <input type="radio" name="jump_type" value="2" title="内链">
+                <input type="radio" name="jump_type" value="2" title="内链-商品详情">
             </div>
         </div>
+
+        <!-- 商品搜索功能，仅在选择内链-商品详情时显示 -->
+        <div class="layui-form-item" id="goods_search_container" style="display: none;">
+            <label class="layui-form-label">商品搜索</label>
+            <div class="layui-input-block">
+                <div class="layui-input-inline" style="width: 300px;">
+                    <input type="text" id="goods_keyword" class="layui-input" placeholder="请输入商品名称关键词搜索">
+                </div>
+                <button type="button" class="layui-btn layui-btn-sm" id="search_goods_btn">
+                    <i class="layui-icon">&#xe615;</i>搜索
+                </button>
+            </div>
+            <div class="layui-input-block" id="goods_search_results" style="margin-top: 10px; display: none;">
+                <div class="layui-card">
+                    <div class="layui-card-header">搜索结果</div>
+                    <div class="layui-card-body" id="goods_list_container">
+                        <!-- 商品列表将在这里动态生成 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <div class="layui-form-item">
             <label class="layui-form-label">跳转链接</label>
             <div class="layui-input-block">
                 <input type="text" name="jump_url" value="" class="layui-input" autocomplete="off" placeholder="比如：内链-跳转商品详情：/pages/pages_product/detail/index?id=商品ID">
             </div>
         </div>
+        
+        
         <div class="layui-form-item">
             <label class="layui-form-label">投放时间</label>
             <div class="layui-input-block">
