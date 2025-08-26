@@ -95,75 +95,88 @@ layui.use(['form', 'table', 'myAjax', 'laydate', 'upload'], function () {
     
     // 重新渲染表单，确保radio按钮事件监听器生效
     form.render();
-    
-    // 等待DOM完全加载后再绑定事件
-    setTimeout(function() {
-        console.log('开始绑定事件监听器'); // 调试信息
-        
-        // 直接绑定radio按钮的change事件
-        $('input[name="jump_type"]').on('change', function() {
-            var value = $(this).val();
-            console.log('Radio change事件触发:', value);
-            if (value == '2') {
-                $('#goods_search_container').show().css('display', 'block');
-                console.log('通过change事件显示商品搜索容器');
-            } else {
-                $('#goods_search_container').hide().css('display', 'none');
-                $('#goods_search_results').hide().css('display', 'none');
-            }
-        });
-        
-        // 也尝试绑定LayUI的事件（作为备用）
-        try {
-            form.on('radio(jump_type)', function(data) {
-                console.log('LayUI radio事件触发:', data.value);
-                if (data.value == '2') {
-                    $('#goods_search_container').show().css('display', 'block');
-                    console.log('通过LayUI事件显示商品搜索容器');
-                } else {
-                    $('#goods_search_container').hide().css('display', 'none');
-                    $('#goods_search_results').hide().css('display', 'none');
-                }
-            });
-            console.log('LayUI事件监听器已绑定');
-        } catch (e) {
-            console.log('LayUI事件绑定失败:', e);
+
+    // 监听跳转类型变化，控制商品搜索功能显示
+    form.on('radio(jump_type)', function(data) {
+        console.log('radio事件触发:', data.value);
+        if (data.value == '2') {
+            // 选择内链-商品详情时显示商品搜索
+            $('#goods_search_container').show();
+        } else {
+            // 其他选项时隐藏商品搜索
+            $('#goods_search_container').hide();
+            $('#goods_search_results').hide();
         }
-        
-        // 初始化检查：确保商品搜索容器在页面加载时是隐藏的
-        $('#goods_search_container').hide();
-        $('#goods_search_results').hide();
-        console.log('商品搜索容器已初始化隐藏'); // 调试信息
-        
-        // 测试按钮事件
-        $('#test_show_btn').on('click', function() {
-            console.log('测试按钮被点击');
-            $('#goods_search_container').show().css('display', 'block');
-            console.log('商品搜索容器应该已显示');
-        });
-        
-        console.log('所有事件监听器已绑定完成'); // 调试信息
-    }, 100);
-    
-    // 页面加载完成后也尝试绑定事件
-    $(document).ready(function() {
-        console.log('Document ready事件触发');
-        
-        // 再次绑定radio按钮事件
-        $('input[name="jump_type"]').off('change').on('change', function() {
-            var value = $(this).val();
-            console.log('Document ready后Radio change事件触发:', value);
-            if (value == '2') {
-                $('#goods_search_container').show().css('display', 'block');
-                console.log('Document ready后显示商品搜索容器');
-            } else {
-                $('#goods_search_container').hide().css('display', 'none');
-                $('#goods_search_results').hide().css('display', 'none');
-            }
-        });
-        
-        console.log('Document ready后事件监听器已绑定');
     });
+    
+    // // 等待DOM完全加载后再绑定事件
+    // setTimeout(function() {
+    //     console.log('开始绑定事件监听器'); // 调试信息
+    //
+    //     // 直接绑定radio按钮的change事件
+    //     $('input[name="jump_type"]').on('change', function() {
+    //         var value = $(this).val();
+    //         console.log('Radio change事件触发:', value);
+    //         if (value == '2') {
+    //             $('#goods_search_container').show().css('display', 'block');
+    //             console.log('通过change事件显示商品搜索容器');
+    //         } else {
+    //             $('#goods_search_container').hide().css('display', 'none');
+    //             $('#goods_search_results').hide().css('display', 'none');
+    //         }
+    //     });
+    //
+    //     // 也尝试绑定LayUI的事件（作为备用）
+    //     try {
+    //         form.on('radio(jump_type)', function(data) {
+    //             console.log('LayUI radio事件触发:', data.value);
+    //             if (data.value == '2') {
+    //                 $('#goods_search_container').show().css('display', 'block');
+    //                 console.log('通过LayUI事件显示商品搜索容器');
+    //             } else {
+    //                 $('#goods_search_container').hide().css('display', 'none');
+    //                 $('#goods_search_results').hide().css('display', 'none');
+    //             }
+    //         });
+    //         console.log('LayUI事件监听器已绑定');
+    //     } catch (e) {
+    //         console.log('LayUI事件绑定失败:', e);
+    //     }
+    //
+    //     // 初始化检查：确保商品搜索容器在页面加载时是隐藏的
+    //     $('#goods_search_container').hide();
+    //     $('#goods_search_results').hide();
+    //     console.log('商品搜索容器已初始化隐藏'); // 调试信息
+    //
+    //     // 测试按钮事件
+    //     $('#test_show_btn').on('click', function() {
+    //         console.log('测试按钮被点击');
+    //         $('#goods_search_container').show().css('display', 'block');
+    //         console.log('商品搜索容器应该已显示');
+    //     });
+    //
+    //     console.log('所有事件监听器已绑定完成'); // 调试信息
+    // }, 100);
+    
+    // // 页面加载完成后也尝试绑定事件
+    // $(document).ready(function() {
+    //     console.log('Document ready事件触发');
+    //
+    //     // 再次绑定radio按钮事件
+    //     $('input[name="jump_type"]').off('change').on('change', function() {
+    //         var value = $(this).val();
+    //         console.log('Document ready后Radio change事件触发:', value);
+    //         if (value == '2') {
+    //             $('#goods_search_container').show().css('display', 'block');
+    //             console.log('Document ready后显示商品搜索容器');
+    //         } else {
+    //             $('#goods_search_container').hide().css('display', 'none');
+    //             $('#goods_search_results').hide().css('display', 'none');
+    //         }
+    //     });
+    //
+    //     console.log('Document ready后事件监听器已绑定');
+    // });
 
     // 商品搜索功能
     $('#search_goods_btn').on('click', function() {
@@ -190,7 +203,7 @@ layui.use(['form', 'table', 'myAjax', 'laydate', 'upload'], function () {
             false, {keyword: keyword}, function(response) {
                 layer.closeAll('loading');
                 
-                if (response.code === 200 && response.data && response.data.length > 0) {
+                if (response.code === 0 && response.data && response.data.length > 0) {
                     displayGoodsResults(response.data);
                 } else {
                     layer.msg('未找到相关商品', {icon: 2, time: 2000});
