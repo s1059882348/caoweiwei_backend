@@ -233,11 +233,9 @@ function getAdminInfo() {
 var window_role_id = 'role_id';
 var window_menu_pid = 'menu_pid';
 var window_menu_icon = 'menu_icon';
-var window_navigate_type = 'navigate_type';
 var window_edit_one = 'edit_one';
 var window_vid = 'voucher_vid';
 var window_goods_cate_pid = 'goods_cate_pid';
-var window_goods_cate_ids = 'goods_cate_ids';
 
 /**
  * 类似php中的array_column

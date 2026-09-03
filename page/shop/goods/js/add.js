@@ -97,15 +97,6 @@ layui.use(['form', 'table', 'myAjax', 'laydate', 'upload', 'element', 'layedit',
     }); //建立编辑器
 
 
-    // //初始化加载搜索信息中的状态
-    // let spaceList = [];
-    // myAjax.authAjax("goods/cateList", "get",
-    //     false, '', function (res) {
-    //         if (Object.keys(res.data).length != 0) {
-    //             spaceList = res.data;
-    //         }
-    //     });
-    // initDynamicSelect(spaceList, "cateid_select", '请选择');
 
     // 商品分类
     let options = [];
@@ -131,11 +122,6 @@ layui.use(['form', 'table', 'myAjax', 'laydate', 'upload', 'element', 'layedit',
     demo1_1.changeEvent(function (values, nodes) {
         $('#demo7').parent().parent().find("input[name='cate_ids']").val(values.join(','));
     });
-    if (window.goods_cate_ids != null) {
-        console.log('已有的分类：' + window[window_goods_cate_ids]);
-        demo1_1.setValue(window[window_goods_cate_ids]);
-        window.goods_cate_ids = null;
-    }
 
 
     //上传图片
@@ -192,14 +178,12 @@ layui.use(['form', 'table', 'myAjax', 'laydate', 'upload', 'element', 'layedit',
     });
 
     //通过edit_one赋值
-    if (window[window_edit_one]) {
-        let edit_one = JSON.parse(window[window_edit_one]);
-
-        window[window_edit_one] = '';
-
-        // $('#cateid_select').val(edit_one.cate_id);//解决第一次打开编辑页面的时候无法赋值的情况
-        layedit.setContent(layedit_index, edit_one.intro, false);//解决第二次打开编辑页面的时候无法赋值的情况
-        editor.setHtml(edit_one.intro)
+    var editData = window[window_edit_one];
+    if (editData) {
+        layedit.setContent(layedit_index, editData.intro, false);//解决第二次打开编辑页面的时候无法赋值的情况
+        editor.setHtml(editData.intro);
+        demo1_1.setValue(editData.cate_ids);     
+        window[window_edit_one] = null;
     }
 
     form.render("select");

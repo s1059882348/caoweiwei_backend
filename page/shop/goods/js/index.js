@@ -107,9 +107,7 @@ layui.use(['form', 'table', 'miniPage', 'element', 'myAjax', 'laydate'], functio
             myAjax.authAjax("goods/goodsGetInfo", "get",
                 false, {id: data.id}, function (response) {
                     edit_data = response.data;
-                    window[window_edit_one] = JSON.stringify(edit_data);
-                    console.log(edit_data.cate_ids);
-                    window[window_goods_cate_ids] = edit_data.cate_ids;
+                    window[window_edit_one] = edit_data;
                 });
 
             var content = miniPage.getHrefContent('page/shop/goods/add.html');
@@ -180,16 +178,5 @@ layui.use(['form', 'table', 'miniPage', 'element', 'myAjax', 'laydate'], functio
             });
         }
     });
-
-    //初始化加载搜索信息中的状态
-    let spaceList = [];
-    myAjax.authAjax("goods/cateList", "get",
-        false, '', function (res) {
-            if (Object.keys(res.data).length != 0) {
-                spaceList = res.data;
-            }
-        });
-    initDynamicSelect(spaceList, "cate_id");
-    form.render("select");
 
 });

@@ -41,15 +41,6 @@ layui.use(['form', 'table', 'myAjax', 'laydate', 'upload', 'element', 'layedit']
         layui.table.reload('currentTableId');
     }
 
-    //初始化加载搜索信息中的状态
-    let spaceList = [];
-    myAjax.authAjax("goods/cateList", "get",
-        false, '', function (res) {
-            if (Object.keys(res.data).length != 0) {
-                spaceList = res.data;
-            }
-        });
-    initDynamicSelect(spaceList, "cateid_select", '请选择');
 
 
     //上传图片
