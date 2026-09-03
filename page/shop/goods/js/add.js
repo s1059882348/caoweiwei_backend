@@ -1,9 +1,10 @@
-layui.use(['form', 'table', 'myAjax', 'laydate', 'upload', 'element', 'layedit'], function () {
+layui.use(['form', 'table', 'myAjax', 'laydate', 'upload', 'element', 'layedit','layCascader'], function () {
     var form = layui.form,
         layer = layui.layer,
         myAjax = layui.myAjax,
         laydate = layui.laydate,
         upload = layui.upload,
+        layCascader = layui.layCascader,
         $ = layui.$;
     var element = layui.element;
     var layedit = layui.layedit;
@@ -97,15 +98,41 @@ layui.use(['form', 'table', 'myAjax', 'laydate', 'upload', 'element', 'layedit']
     }); //建立编辑器
 
 
-    //初始化加载搜索信息中的状态
-    let spaceList = [];
-    myAjax.authAjax("goods/cateList", "get",
+    // //初始化加载搜索信息中的状态
+    // let spaceList = [];
+    // myAjax.authAjax("goods/cateList", "get",
+    //     false, '', function (res) {
+    //         if (Object.keys(res.data).length != 0) {
+    //             spaceList = res.data;
+    //         }
+    //     });
+    // initDynamicSelect(spaceList, "cateid_select", '请选择');
+
+    // 商品分类
+    let options = [];
+    myAjax.authAjax('goods_cate/getCateSelect', 'get',
         false, '', function (res) {
-            if (Object.keys(res.data).length != 0) {
-                spaceList = res.data;
+            if(Object.keys(res.data).length != 0){
+                options = res.data;
             }
         });
-    initDynamicSelect(spaceList, "cateid_select", '请选择');
+
+    var demo1_1 = layCascader({
+        elem: '#demo7',
+        clearable: true,
+        options: options,
+        props: {
+            multiple: true,
+            checkStrictly: true,
+            value: 'id',
+            label: 'title',
+            children: 'children',
+        }
+    });
+    demo1_1.changeEvent(function (values, nodes) {
+        console.log(values, nodes);
+        $('#demo7').parent().parent().find("input[name='cate_ids']").val(values.join(','));
+    });
 
 
     //上传图片
@@ -167,7 +194,7 @@ layui.use(['form', 'table', 'myAjax', 'laydate', 'upload', 'element', 'layedit']
 
         window[window_edit_one] = '';
 
-        $('#cateid_select').val(edit_one.cate_id);//解决第一次打开编辑页面的时候无法赋值的情况
+        // $('#cateid_select').val(edit_one.cate_id);//解决第一次打开编辑页面的时候无法赋值的情况
         layedit.setContent(layedit_index, edit_one.intro, false);//解决第二次打开编辑页面的时候无法赋值的情况
         editor.setHtml(edit_one.intro)
     }
