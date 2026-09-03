@@ -129,7 +129,6 @@ layui.use(['form', 'table', 'myAjax', 'laydate', 'upload', 'element', 'layedit',
         }
     });
     demo1_1.changeEvent(function (values, nodes) {
-        console.log(values, nodes);
         $('#demo7').parent().parent().find("input[name='cate_ids']").val(values.join(','));
     });
     if (window.goods_cate_ids != null) {

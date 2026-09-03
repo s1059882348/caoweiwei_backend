@@ -108,6 +108,7 @@ layui.use(['form', 'table', 'miniPage', 'element', 'myAjax', 'laydate'], functio
                 false, {id: data.id}, function (response) {
                     edit_data = response.data;
                     window[window_edit_one] = JSON.stringify(edit_data);
+                    console.log(edit_data.cate_ids);
                     window[window_goods_cate_ids] = edit_data.cate_ids;
                 });
 
