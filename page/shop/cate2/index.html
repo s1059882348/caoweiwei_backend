@@ -1,0 +1,29 @@
+<style>
+    .layui-btn:not(.layui-btn-lg ):not(.layui-btn-sm):not(.layui-btn-xs) {height:34px;line-height:34px;padding:0 8px;}
+    table>tbody .layui-table-cell{
+        height:45px;
+    }
+</style>
+<body>
+<div class="layuimini-container layuimini-page-anim">
+    <div class="layuimini-main">
+        <div>
+            <div class="layui-btn-group">
+                <button class="layui-btn" id="btn-expand">全部展开</button>
+                <button class="layui-btn layui-btn-normal" id="btn-fold">全部折叠</button>
+            </div>
+            <div class="layui-btn-group" style="margin-left: 80%;">
+                <button class="layui-btn layui-btn-normal check-permission" id="menu_index_addmenu" data-permission="shop/cate/add">添加</button>
+            </div>
+            <table id="munu-table" class="layui-table" lay-filter="munu-table"></table>
+        </div>
+    </div>
+</div>
+<!-- 操作列 -->
+<script type="text/html" id="auth-state">
+    <a class="layui-btn layui-btn-primary layui-btn-xs check-permission" lay-event="edit" data-permission="shop/cate/edit">修改</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs check-permission" lay-event="del" data-permission="shop/cate/delete">删除</a>
+</script>
+<script src="page/shop/cate/js/index.js" charset="utf-8"></script>
+</body>
+</html>

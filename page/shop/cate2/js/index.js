@@ -6,7 +6,7 @@ layui.use(['table', 'treetable', 'miniPage', 'myAjax'], function () {
     var myAjax = layui.myAjax;
 
 
-    myAjax.authAjax('goods_cate/index', 'get',
+    myAjax.authAjax('goods/getCateList', 'get',
         true, '', function (res) {
             renderTable(res.data.data);
         });
@@ -66,7 +66,7 @@ layui.use(['table', 'treetable', 'miniPage', 'myAjax'], function () {
 
         if (layEvent === 'del') {
             layer.confirm('确定删除？', function (index) {
-                myAjax.authAjax('goods_cate/del', 'post',
+                myAjax.authAjax('goods/cateDel', 'post',
                     true, {id: data.id}, function (response) {
                         obj.del();
                         layer.close(index);

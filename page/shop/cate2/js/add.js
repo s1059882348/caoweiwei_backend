@@ -2,7 +2,6 @@ layui.use(['form', 'treetable', 'layer', 'myAjax', 'layCascader'], function () {
     var form = layui.form,
         layer = layui.layer,
         myAjax = layui.myAjax,
-        layCascader = layui.layCascader,
         $ = layui.$;
 
     /**
@@ -27,10 +26,10 @@ layui.use(['form', 'treetable', 'layer', 'myAjax', 'layCascader'], function () {
 
         var params_object = data.field;
         if (params_object.cate_id) {
-            myAjax.authAjax('goods_cate/update', 'post',
+            myAjax.authAjax('goods/cateUpdate  ', 'post',
                 false, params_object, saveHandle);
         } else {
-            myAjax.authAjax('goods_cate/add', 'post',
+            myAjax.authAjax('goods/cateAdd', 'post',
                 false, params_object, saveHandle);
         }
 
@@ -44,30 +43,14 @@ layui.use(['form', 'treetable', 'layer', 'myAjax', 'layCascader'], function () {
     }
 
 
-
-    //获取完整分类
+    //获取菜单-树下拉
     let options = [];
-    myAjax.authAjax('goods_cate/getCateSelect', 'get',
+    myAjax.authAjax('goods/getCateSelect', 'get',
         false, '', function (res) {
-            if(Object.keys(res.data).length != 0){
+            if (Object.keys(res.data).length != 0) {
                 options = res.data;
             }
         });
-
-    var demo1_1 = layCascader({
-        elem: '#demo7',
-        clearable: true,
-        options: options,
-        props: {
-            checkStrictly: true,
-            value: 'id',
-            label: 'title',
-            children: 'children',
-        }
-    });
-    demo1_1.changeEvent(function (value, node) {
-        $('#demo7').parent().parent().find("input[name='pid']").val(node.data.id);
-    });
 
 
     //上传图片
