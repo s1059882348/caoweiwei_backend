@@ -68,6 +68,10 @@ layui.use(['form', 'treetable', 'layer', 'myAjax', 'layCascader'], function () {
     demo1_1.changeEvent(function (value, node) {
         $('#demo7').parent().parent().find("input[name='pid']").val(node.data.id);
     });
+    if (window.goods_cate_pid >= 0) {
+        demo1_1.setValue(window.goods_cate_pid);
+        window.goods_cate_pid = null;
+    }
 
 
     //上传图片

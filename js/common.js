@@ -237,7 +237,7 @@ var window_navigate_type = 'navigate_type';
 var window_edit_one = 'edit_one';
 var window_vid = 'voucher_vid';
 var window_goods_cate_pid = 'goods_cate_pid';
-var window_goods_cate_icon = 'goods_cate_icon';
+var window_goods_cate_ids = 'goods_cate_ids';
 
 /**
  * 类似php中的array_column

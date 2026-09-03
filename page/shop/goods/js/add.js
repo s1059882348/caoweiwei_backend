@@ -1,4 +1,4 @@
-layui.use(['form', 'table', 'myAjax', 'laydate', 'upload', 'element', 'layedit','layCascader'], function () {
+layui.use(['form', 'table', 'myAjax', 'laydate', 'upload', 'element', 'layedit', 'layCascader'], function () {
     var form = layui.form,
         layer = layui.layer,
         myAjax = layui.myAjax,
@@ -43,13 +43,12 @@ layui.use(['form', 'table', 'myAjax', 'laydate', 'upload', 'element', 'layedit',
 
 
     ////////////官网：https://www.wangeditor.com///////////////
-    const { createEditor, createToolbar } = window.wangEditor
+    const {createEditor, createToolbar} = window.wangEditor
 
     const editorConfig = {
         placeholder: 'Type here...',
         MENU_CONF: {},
-        onChange(editor)
-        {
+        onChange(editor) {
             const html = editor.getHtml()
             //console.log('editor content', html)
             // 也可以同步到 <textarea>
@@ -86,7 +85,7 @@ layui.use(['form', 'table', 'myAjax', 'laydate', 'upload', 'element', 'layedit',
         config: toolbarConfig,
         mode: 'default', // or 'simple'
     })
-   ///////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////
     //富文本编辑器
     var layedit_index = layedit.build('layedit-demo', {
         tool: ['strong', 'italic', 'underline', 'del', '|', 'left', 'center', 'right',
@@ -112,7 +111,7 @@ layui.use(['form', 'table', 'myAjax', 'laydate', 'upload', 'element', 'layedit',
     let options = [];
     myAjax.authAjax('goods_cate/getCateSelect', 'get',
         false, '', function (res) {
-            if(Object.keys(res.data).length != 0){
+            if (Object.keys(res.data).length != 0) {
                 options = res.data;
             }
         });
@@ -133,6 +132,11 @@ layui.use(['form', 'table', 'myAjax', 'laydate', 'upload', 'element', 'layedit',
         console.log(values, nodes);
         $('#demo7').parent().parent().find("input[name='cate_ids']").val(values.join(','));
     });
+    if (window.goods_cate_ids != null) {
+        console.log('已有的分类：' + window[window_goods_cate_ids]);
+        demo1_1.setValue(window[window_goods_cate_ids]);
+        window.goods_cate_ids = null;
+    }
 
 
     //上传图片
