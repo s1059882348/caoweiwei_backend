@@ -15,11 +15,11 @@ layui.use(['form', 'treetable', 'layer', 'myAjax', 'layCascader'], function () {
 
     form.verify({
         // value：表单的值、item：表单的DOM对象
-        icon: function (value, item) {
-            if (value <= 0 || value == '') {
-                return "请上传图标";
-            }
-        }
+        // icon: function (value, item) {
+        //     if (value <= 0 || value == '') {
+        //         return "请上传图标";
+        //     }
+        // }
     });
 
     //监听提交
